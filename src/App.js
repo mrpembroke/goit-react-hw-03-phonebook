@@ -31,8 +31,6 @@ class App extends Component {
       : this.setState(({ contacts }) => ({ contacts: [...contacts, contact] }));
   };
 
-  // alert(`${name} is already added.`)
-
   deleteContact = contactId => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
