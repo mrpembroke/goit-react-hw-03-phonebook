@@ -1,6 +1,7 @@
 import './App.css';
 import React, { Component } from 'react';
 import shortid from 'shortid';
+import toast, { Toaster } from 'react-hot-toast';
 
 import ContactForm from './components/ContactForm/ContactForm';
 import Filter from './components/Filter/Filter';
@@ -26,9 +27,11 @@ class App extends Component {
     contacts.find(
       ({ name }) => name.toLowerCase() === contact.name.toLowerCase(),
     )
-      ? alert(`${name} is already added.`)
+      ? toast.error(`${name} is already added.`)
       : this.setState(({ contacts }) => ({ contacts: [...contacts, contact] }));
   };
+
+  // alert(`${name} is already added.`)
 
   deleteContact = contactId => {
     this.setState(prevState => ({
@@ -75,6 +78,7 @@ class App extends Component {
       <>
         <div>
           <h2>My phonebook</h2>
+          <Toaster />
 
           <ContactForm onSubmit={this.addContact} />
           <Filter value={filter} onChange={this.changeInput} />
